@@ -7,6 +7,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
+import com.api.shadow.constants.Authorities;
+
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
@@ -21,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.anonymous().disable().authorizeRequests().antMatchers("/api/**")
-				.access("hasRole('ADMIN') and hasRole('USER')").and().exceptionHandling()
+				.hasAnyRole(Authorities.ADMIN, Authorities.USER).and().exceptionHandling()
 				.accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 

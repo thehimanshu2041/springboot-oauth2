@@ -3,6 +3,7 @@ package com.api.shadow.constants;
 public class VariableConstants {
 	/** Flag */
 
+	public static final String FLAG_A = "A";
 	public static final String FLAG_Y = "Y";
 	public static final String FLAG_N = "N";
 

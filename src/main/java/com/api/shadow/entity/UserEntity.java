@@ -1,4 +1,4 @@
-package com.api.shadow.modal.entity;
+package com.api.shadow.entity;
 
 import java.io.Serializable;
 import java.util.Date;

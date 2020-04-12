@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.entity.UserEntity;
+import com.api.shadow.entity.country.CountryEntity;
 
-public class ApiResponseUserList {
+public class ApiResponseCountryList {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private List<CountryEntity> countryEntity;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseCountryList(HttpStatus status, String message, List<CountryEntity> countryEntity) {
 		this.status = status.value();
 		this.message = message;
-		this.userEntity = userEntity;
+		this.countryEntity = countryEntity;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseCountryList(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,12 +39,12 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
+	public List<CountryEntity> getCountryEntity() {
+		return countryEntity;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
+	public void setCountryEntity(List<CountryEntity> countryEntity) {
+		this.countryEntity = countryEntity;
 	}
 
 	@Override

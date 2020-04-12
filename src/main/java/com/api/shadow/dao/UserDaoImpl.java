@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.shadow.constants.VariableConstants;
+import com.api.shadow.dao.repository.CardRepository;
 import com.api.shadow.dao.repository.RoleRepository;
 import com.api.shadow.dao.repository.UserRepository;
 import com.api.shadow.dto.UserDto;
-import com.api.shadow.modal.entity.RoleTypeEnum;
-import com.api.shadow.modal.entity.UserEntity;
+import com.api.shadow.entity.CardEntity;
+import com.api.shadow.entity.RoleTypeEnum;
+import com.api.shadow.entity.UserEntity;
 import com.api.shadow.utility.TokenGenerator;
 
 @Service
@@ -24,6 +26,9 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private RoleRepository roleRepository;
+
+	@Autowired
+	private CardRepository cardRepository;
 
 	@Override
 	public UserEntity save(UserEntity user) {
@@ -69,5 +74,35 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public UserEntity findByUsername(String userId) {
 		return userRepository.findByUsername(userId);
+	}
+
+	@Override
+	public UserEntity findByUserEmail(String userEmail) {
+		return userRepository.findByUserEmail(userEmail);
+	}
+
+	@Override
+	public boolean saveCardDetail(CardEntity cardEntity) {
+		boolean response = false;
+		try {
+			CardEntity ce = cardRepository.findByCardUserID(cardEntity.getCardUserID());
+			if (null != ce) {
+				cardRepository.updateCardDetails(cardEntity.getCardNumber(), cardEntity.getHolderFirstName(),
+						cardEntity.getHolderLastName(), cardEntity.getExpiryMonth(), cardEntity.getExpiryYear(),
+						cardEntity.getCvv(), cardEntity.getCardUserID());
+			} else {
+				cardRepository.save(cardEntity);
+			}
+			response = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = false;
+		}
+		return response;
+	}
+
+	@Override
+	public CardEntity getCardDetail(int userID) {
+		return cardRepository.findByCardUserID(userID);
 	}
 }

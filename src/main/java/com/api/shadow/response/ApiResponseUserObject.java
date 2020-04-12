@@ -1,24 +1,22 @@
 package com.api.shadow.response;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 
 import com.api.shadow.entity.UserEntity;
 
-public class ApiResponseUserList {
+public class ApiResponseUserObject {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private UserEntity userEntity;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseUserObject(HttpStatus status, String message, UserEntity userEntity) {
 		this.status = status.value();
 		this.message = message;
 		this.userEntity = userEntity;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseUserObject(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,11 +37,11 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
+	public UserEntity getUserEntity() {
 		return userEntity;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
+	public void setUserEntity(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
 

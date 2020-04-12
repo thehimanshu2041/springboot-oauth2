@@ -3,7 +3,6 @@ package com.api.shadow.sequrity;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,9 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -44,6 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().anonymous().disable().authorizeRequests().antMatchers("/pub/**").permitAll();
 	}
 
+	/*
+	 * @Override public void configure(WebSecurity web) throws Exception {
+	 * web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/token"); }
+	 */
+
 	@Bean
 	public TokenStore tokenStore() {
 		return new InMemoryTokenStore();
@@ -54,17 +55,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.addAllowedOrigin("*");
-		config.addAllowedHeader("*");
-		config.addAllowedMethod("*");
-		source.registerCorsConfiguration("/api/**", config);
-		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(source));
-		bean.setOrder(0);
-		return bean;
-	}
+	/*
+	 * @Bean public FilterRegistrationBean<CorsFilter> corsFilter() {
+	 * UrlBasedCorsConfigurationSource source = new
+	 * UrlBasedCorsConfigurationSource(); CorsConfiguration config = new
+	 * CorsConfiguration(); config.setAllowCredentials(true);
+	 * config.addAllowedOrigin("*"); config.addAllowedHeader("*");
+	 * config.addAllowedMethod("*"); source.registerCorsConfiguration("/**",
+	 * config); FilterRegistrationBean<CorsFilter> bean = new
+	 * FilterRegistrationBean<CorsFilter>(new CorsFilter(source));
+	 * bean.setOrder(0); return bean; }
+	 */
 }

@@ -1,24 +1,22 @@
 package com.api.shadow.response;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.entity.UserEntity;
+import com.api.shadow.entity.CardEntity;
 
-public class ApiResponseUserList {
+public class ApiResponseCardObject {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private CardEntity cardEntity;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseCardObject(HttpStatus status, String message, CardEntity cardEntity) {
 		this.status = status.value();
 		this.message = message;
-		this.userEntity = userEntity;
+		this.cardEntity = cardEntity;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseCardObject(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,12 +37,12 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
+	public CardEntity getCardEntity() {
+		return cardEntity;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
+	public void setCardEntity(CardEntity cardEntity) {
+		this.cardEntity = cardEntity;
 	}
 
 	@Override

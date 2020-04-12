@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.entity.UserEntity;
+import com.api.shadow.modal.ManagedContent;
 
-public class ApiResponseUserList {
+public class ApiResponseConfiguredTileList {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private List<ManagedContent> data;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseConfiguredTileList(HttpStatus status, String message, List<ManagedContent> data) {
 		this.status = status.value();
 		this.message = message;
-		this.userEntity = userEntity;
+		this.data = data;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseConfiguredTileList(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,12 +39,12 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
+	public List<ManagedContent> getData() {
+		return data;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
+	public void setData(List<ManagedContent> data) {
+		this.data = data;
 	}
 
 	@Override

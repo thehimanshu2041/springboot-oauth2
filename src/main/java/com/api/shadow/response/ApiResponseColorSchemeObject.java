@@ -1,24 +1,22 @@
 package com.api.shadow.response;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.entity.UserEntity;
+import com.api.shadow.entity.ColorSchemeEntity;
 
-public class ApiResponseUserList {
+public class ApiResponseColorSchemeObject {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private ColorSchemeEntity colorSchemeEntity;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseColorSchemeObject(HttpStatus status, String message, ColorSchemeEntity colorSchemeEntity) {
 		this.status = status.value();
 		this.message = message;
-		this.userEntity = userEntity;
+		this.colorSchemeEntity = colorSchemeEntity;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseColorSchemeObject(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,12 +37,12 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
+	public ColorSchemeEntity getColorSchemeEntity() {
+		return colorSchemeEntity;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
+	public void setColorSchemeEntity(ColorSchemeEntity colorSchemeEntity) {
+		this.colorSchemeEntity = colorSchemeEntity;
 	}
 
 	@Override

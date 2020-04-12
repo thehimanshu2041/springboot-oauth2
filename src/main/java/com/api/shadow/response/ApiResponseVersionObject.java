@@ -2,7 +2,7 @@ package com.api.shadow.response;
 
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.modal.entity.VersionEntity;
+import com.api.shadow.entity.VersionEntity;
 
 public class ApiResponseVersionObject {
 

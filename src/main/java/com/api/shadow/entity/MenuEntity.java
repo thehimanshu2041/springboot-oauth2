@@ -1,7 +1,8 @@
-package com.api.shadow.modal.entity;
+package com.api.shadow.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "MENU_ENTITY")
@@ -42,7 +44,16 @@ public class MenuEntity implements Serializable {
 	@Column(name = "MENU_IS_DELETED", nullable = false)
 	private String menuIsDeleted;
 
-	@Column(name = "MENU_KEY", nullable = false)
+	@Column(name = "MENU_IS_ADMIN", nullable = false)
+	private String menuIsAdmin;
+
+	@Column(name = "MENU_IS_VISIBLE", nullable = false)
+	private String menuIsVisible;
+
+	@Column(name = "MENU_IS_AUTH_REQ", nullable = false)
+	private String menuIsAuthReq;
+
+	@Column(name = "MENU_KEY", nullable = false, unique = true)
 	private String menuKey;
 
 	@Column(name = "MENU_UPDATED_BY", nullable = false)
@@ -53,6 +64,12 @@ public class MenuEntity implements Serializable {
 
 	@Column(name = "MENU_MODIFIED_DATE_TIME", nullable = false)
 	private Date menuModifiedDateTime;
+
+	@Column(name = "MENU_PRIORITY", nullable = false, unique = true)
+	private int menuPriority;
+
+	@Transient
+	private List<MenuEntity> children;
 
 	public int getMenuID() {
 		return menuID;
@@ -68,6 +85,14 @@ public class MenuEntity implements Serializable {
 
 	public void setMenuParentID(int menuParentID) {
 		this.menuParentID = menuParentID;
+	}
+
+	public String getMenuIsAdmin() {
+		return menuIsAdmin;
+	}
+
+	public void setMenuIsAdmin(String menuIsAdmin) {
+		this.menuIsAdmin = menuIsAdmin;
 	}
 
 	public String getMenuName() {
@@ -140,6 +165,38 @@ public class MenuEntity implements Serializable {
 
 	public void setMenuModifiedDateTime(Date menuModifiedDateTime) {
 		this.menuModifiedDateTime = menuModifiedDateTime;
+	}
+
+	public String getMenuIsVisible() {
+		return menuIsVisible;
+	}
+
+	public void setMenuIsVisible(String menuIsVisible) {
+		this.menuIsVisible = menuIsVisible;
+	}
+
+	public String getMenuIsAuthReq() {
+		return menuIsAuthReq;
+	}
+
+	public void setMenuIsAuthReq(String menuIsAuthReq) {
+		this.menuIsAuthReq = menuIsAuthReq;
+	}
+
+	public List<MenuEntity> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<MenuEntity> children) {
+		this.children = children;
+	}
+
+	public int getMenuPriority() {
+		return menuPriority;
+	}
+
+	public void setMenuPriority(int menuPriority) {
+		this.menuPriority = menuPriority;
 	}
 
 	public static long getSerialversionuid() {

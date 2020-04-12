@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.entity.UserEntity;
+import com.api.shadow.modal.ArticleModal;
 
-public class ApiResponseUserList {
+public class ApiResponseNewsList {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private List<ArticleModal> articleModalList;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseNewsList(HttpStatus status, String message, List<ArticleModal> articleModalList) {
 		this.status = status.value();
 		this.message = message;
-		this.userEntity = userEntity;
+		this.articleModalList = articleModalList;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseNewsList(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,12 +39,12 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
+	public List<ArticleModal> getArticleModalList() {
+		return articleModalList;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
+	public void setArticleModalList(List<ArticleModal> articleModalList) {
+		this.articleModalList = articleModalList;
 	}
 
 	@Override

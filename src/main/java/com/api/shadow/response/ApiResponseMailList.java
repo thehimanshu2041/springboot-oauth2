@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
-import com.api.shadow.entity.UserEntity;
+import com.api.shadow.entity.NotificationEntity;
 
-public class ApiResponseUserList {
+public class ApiResponseMailList {
 
 	private int status;
 	private String message;
-	private List<UserEntity> userEntity;
+	private List<NotificationEntity> notificationEntity;
 
-	public ApiResponseUserList(HttpStatus status, String message, List<UserEntity> userEntity) {
+	public ApiResponseMailList(HttpStatus status, String message, List<NotificationEntity> notificationEntity) {
 		this.status = status.value();
 		this.message = message;
-		this.userEntity = userEntity;
+		this.notificationEntity = notificationEntity;
 	}
 
-	public ApiResponseUserList(HttpStatus status, String message) {
+	public ApiResponseMailList(HttpStatus status, String message) {
 		this.status = status.value();
 		this.message = message;
 	}
@@ -39,12 +39,12 @@ public class ApiResponseUserList {
 		this.message = message;
 	}
 
-	public List<UserEntity> getUserEntity() {
-		return userEntity;
+	public List<NotificationEntity> getNotificationEntity() {
+		return notificationEntity;
 	}
 
-	public void setUserEntity(List<UserEntity> userEntity) {
-		this.userEntity = userEntity;
+	public void setNotificationEntity(List<NotificationEntity> notificationEntity) {
+		this.notificationEntity = notificationEntity;
 	}
 
 	@Override

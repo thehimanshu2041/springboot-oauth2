@@ -1,6 +1,7 @@
 package com.api.shadow.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,8 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.api.shadow.dao.UserDao;
-import com.api.shadow.modal.entity.RoleEntity;
-import com.api.shadow.modal.entity.UserEntity;
+import com.api.shadow.entity.CardEntity;
+import com.api.shadow.entity.RoleEntity;
+import com.api.shadow.entity.UserEntity;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService {
@@ -54,5 +56,46 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	@Override
 	public UserEntity save(UserEntity user) {
 		return userDao.save(user);
+	}
+
+	@Override
+	public UserEntity findByUserEmail(String userEmail) {
+		return userDao.findByUserEmail(userEmail);
+	}
+
+	@Override
+	public boolean saveCardDetail(CardEntity cardEntity, String username) {
+		boolean resp = false;
+		UserEntity userEntity = null;
+
+		if (null != username) {
+			userEntity = userDao.findByUsername(username);
+			if (null == userEntity) {
+				resp = false;
+			} else {
+				cardEntity.setCardUserID(userEntity.getUserID());
+				cardEntity.setUpdatedBy("ENGINE");
+				cardEntity.setCreatedDateTime(new Date());
+				cardEntity.setModifiedDateTime(new Date());
+				resp = userDao.saveCardDetail(cardEntity);
+			}
+		}
+		return resp;
+	}
+
+	@Override
+	public CardEntity getCardDetail(String username) {
+		CardEntity cardEntity = null;
+		UserEntity userEntity = null;
+
+		if (null != username) {
+			userEntity = userDao.findByUsername(username);
+			if (null == userEntity) {
+				cardEntity = null;
+			} else {
+				cardEntity = userDao.getCardDetail(userEntity.getUserID());
+			}
+		}
+		return cardEntity;
 	}
 }
